@@ -1,0 +1,169 @@
+<!-- <select id="workSite" class="mdb-select form-control" [(ngModel)]="workSite">
+  <option *ngFor="let site of workSites" [value]="site.SiteName">{{site.SiteName}}</option>
+</select>
+
+<div class="px-4">
+<table>
+  <tr>
+    <th>Select From below employess</th>
+    <th></th>
+    <th>Employees in {{workSite}}</th>
+  </tr>
+  <tr>
+    <td>
+
+  <input type="text">
+  <table class="table table-hover table-responsive-md mb-0" style="width: 100px;">
+
+
+      <thead>
+          <tr>
+              <th scope="row">Code</th>
+              <th class="th-lg">Name</th>
+              <th class="th-lg">Type</th>
+
+      <th></th>
+      <th></th>
+          </tr>
+      </thead>
+ 
+      <tbody >
+          <tr *ngFor="let emp of searchdata">
+              <th scope="row">{{emp.employee_code}}</th>
+              <td>{{emp.first_name}}</td>
+              <td>{{emp.employee_type_name}}</td>
+         
+              <td>
+                  <input type="checkbox">
+              </td>
+            
+             
+          </tr>
+         
+      </tbody>
+   
+  </table>
+</td>
+<td><button class="btn btn-pink waves-light">Allocate =></button></td>
+<td>
+  <table class="table table-hover table-responsive-md mb-0" style="width: 100px;">
+
+
+    <thead>
+        <tr>
+            <th scope="row">Code</th>
+            <th class="th-lg">Name</th>
+            <th class="th-lg">Type</th>
+
+    <th></th>
+    <th></th>
+        </tr>
+    </thead>
+    
+    <tbody >
+        <tr *ngFor="let emp of searchdata">
+            <th scope="row">{{emp.employee_code}}</th>
+            <td>{{emp.first_name}}</td>
+            <td>{{emp.employee_type_name}}</td>
+           
+        </tr>
+       
+    </tbody>
+
+</table>
+</td>
+</tr>
+</table>
+   -->
+
+
+<div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Site Allocation</h3>
+                    <p class="page-dir"> <i class="material-icons">home</i>Home / Site Allocation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+ 
+    <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <select id="inputState" class="form-control" name="workSite" [(ngModel)]="workSite">
+                        <option *ngFor="let site of workSites" [value]="site.SiteName">{{site.SiteName}}</option>
+                      </select>
+                </div>
+              </form>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                  <!-- <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                  </select> -->
+                  <input class="form-control" placeholder="Search" type="text">
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Current Site</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let emp of searchdata">
+                            <th scope="row">{{emp.employee_code}}</th>
+                            <td>{{emp.first_name}}</td>
+                            <td>{{emp.employee_type_name}}</td>  
+                            <td>{{emp.employee_type_name}}</td>              
+                        <td><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></td>
+                      </tr>         
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-2">
+                  <button type="submit" class="btn btn-primary full-width mt-3 mb-3">Allocate >></button>
+                  <button type="submit" class="btn btn-danger full-width mt-3 mb-3">Remove</button>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-group">
+                  <!-- <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                  </select> -->
+                  <input class="form-control" placeholder="Search" type="text">
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let emp of searchdata">
+                                    <th scope="row">{{emp.employee_code}}</th>
+                                    <td>{{emp.first_name}}</td>
+                                    <td>{{emp.employee_type_name}}</td> 
+                        <!-- <td><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></td> -->
+                      </tr>         
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>

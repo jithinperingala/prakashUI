@@ -1,0 +1,77 @@
+<!-- Card -->
+<div class="card">
+
+  <!-- Card body -->
+  <div class="card-body mt-4">
+    <h4 class="card-title text-center">{{formHeadder}}</h4>
+    <!-- Material form register -->
+    <form [formGroup]="paymentForm" (ngSubmit)="SavePayment(paymentForm.value)">
+      <!-- Material input email -->
+      <!-- Material input text -->
+      <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <input type="date" id="paymentDate" formControlName="paymentDate" class="form-control" mdbInputDirective>
+        <label for="paymentDate" class="font-weight-light">Date</label>
+      </div>
+      <div class="md-form">
+        <i class="fa fa-suitcase prefix grey-text"></i>
+        <!--Blue select-->
+        <select id="workSite" class="mdb-select form-control" formControlName="workSite" mdbInputDirective>
+          <option *ngFor="let site of workSites" [value]="site.SiteId">{{site.SiteName}}</option>
+        </select>
+        <label for="workSite" class="font-weight-light">Work Site</label>
+        <!--/Blue select-->
+
+      </div>
+     
+      <!-- Material input text -->
+      <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <ng-select [items]="employeeData" bindLabel="first_name" bindValue="employee_id" formControlName="fromAccount">
+        </ng-select>
+         <label *ngIf="!paymentForm.controls.fromAccount?.valid"  class="font-weight-light">From</label>
+      </div>
+      <div class="md-form">
+        <i class="fa fa-suitcase prefix grey-text"></i>
+        <!--Blue select-->
+        <select id="bankName" class="mdb-select form-control" formControlName="bankName" mdbInputDirective>
+          <option *ngFor="let bank of bankNames" [value]="bank.bankID">{{bank.bankName}}</option>
+        </select>
+        <label for="bankName" class="font-weight-light">Bank Name</label>
+        <!--/Blue select-->
+
+      </div>
+      <!-- Material input text -->
+      <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <ng-select [items]="employeeData" bindLabel="first_name" bindValue="employee_id" formControlName="toAccount">
+        </ng-select>
+        <label *ngIf="!paymentForm.controls.toAccount?.valid" class="font-weight-light" >To</label>
+      </div>
+
+
+
+
+      <!-- Material input password -->
+      <div class="md-form">
+        <i class="fa fa-lock prefix grey-text"></i>
+        <input type="text" id="amount" formControlName="amount" class="form-control" mdbInputDirective>
+        <label for="amount" class="font-weight-light">Amount</label>
+      </div>
+      <div class="md-form">
+        <i class="fa fa-address-card prefix grey-text"></i>
+        <textarea mdbInputDirective type="text" id="remark" formControlName="remark" class="md-textarea form-control" rows="3"></textarea>
+        <label for="remark" class="font-weight-light">Remark</label>
+      </div>
+      <div class="text-center py-4 mt-3">
+        <button class="btn btn-pink waves-light" [disabled]="paymentForm.invalid" type="submit" mdbWavesEffect>Save</button>
+        <button type="button" class="btn btn-warning" (click)="paymentForm.reset()">Reset</button>
+      </div>
+    </form>
+    <!-- Material form register -->
+
+  </div>
+  <!-- Card body -->
+
+</div>
+<!-- Card -->

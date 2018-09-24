@@ -1,0 +1,70 @@
+<form [formGroup]="loginForm" (ngSubmit)="validateUser(loginForm.value)">
+
+ 
+<div mdbModal #logInModal="mdb-modal" class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                <button type="button" (click)="logInModal.hide()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    <input type="email" id="userName" formControlName="userName" class="form-control " mdbInputDirective>
+                    <label data-error="wrong" data-success="right" for="userName">Your email</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="password" id="defaultForm-pass" formControlName="passCode" class="form-control " mdbInputDirective>
+                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-default">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+<div class="text-center">
+    <a (click)="logInModal.show()" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+</div>
+
+<!-- <form [formGroup]="loginForm" (ngSubmit)="saveEmployeeType(cardForm.value)">
+
+    <div mdbModal #logInModal="mdb-modal" class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Employee Type</h4>
+                    <button type="button" (click)="logInModal.hide()" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="text" id="employeeType" formControlName="employeeType" class="form-control" mdbInputDirective>
+                        <label for="employeeType" class="font-weight-light">Employee Type</label>
+                      </div>
+    
+                      <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="text" id="employeeCode" formControlName="employeeCode" class="form-control" mdbInputDirective>
+                        <label for="employeeCode" class="font-weight-light">Employee Code</label>
+                      </div>
+    
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-default">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form> -->
