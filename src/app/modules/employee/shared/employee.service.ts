@@ -115,9 +115,9 @@ export class EmployeeService {
     }
    this.http._post(path, formData).subscribe(
                 (success) => {
-                 alert(success._body);
+                 console.log(success._body);
               },
-                (error) => alert(error)
+                (error) => console.log(error)
             ); 
   }
 }

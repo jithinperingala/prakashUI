@@ -52,7 +52,7 @@ export class EmployeeRegistrationComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log("ImageUpload:uploaded:", item, status, response);
-      alert(response);
+     
     };
     this.searchId = this.ActivatedRoute.snapshot.params['id']
     this.cardForm.controls.empType.setValue(1)
