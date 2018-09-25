@@ -10,6 +10,9 @@ export class Pathgenerator {
             getEmployeeDetails: 'employee/getEmployeeDetails',
             DeleteEmployee: 'employee/deleteEmployee',
             searchByEmpType:'employee/getEmployeeDetails/empType',
+            uploadEmployeeImage:'employee/createUpdateEmployee/photoUpload',
+            uploadAadar:'employee/createUpdateEmployee/aadarUpload',
+            uploadInsurance:'employee/createUpdateEmployee/insuranceUpload',
 
             getEmployeeType: 'employee/getEmployeeType',
             createUpdateEmployeeType:'employee/createUpdateEmployeeType',
@@ -26,7 +29,15 @@ export class Pathgenerator {
     private generatePath(uri): string {
         return config._baseURL + uri
     }
-
+    uploadEmployeeImage(){
+        return this.generatePath(this.uriCollection.uploadEmployeeImage)
+    }
+    uploadEmployeeInsurance(){
+        return this.generatePath(this.uriCollection.uploadInsurance)
+    }
+    uploadEmployeeAadar(){
+        return this.generatePath(this.uriCollection.uploadAadar)
+    }
     createUpdateEmployee() {
         return this.generatePath(this.uriCollection.createUpdateEmployee)
     }

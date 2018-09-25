@@ -101,6 +101,25 @@ export class EmployeeService {
   else
     return of()
   }
+  savePhoto(formData,id){
+    console.log(formData)
+    let path
+    if(id=='photo'){
+     path= this.pathgen.uploadEmployeeImage()
+    }
+    else if(id=='aadar'){
+      path= this.pathgen.uploadEmployeeAadar()
+    }
+    else if(id=='insurance'){
+      path= this.pathgen.uploadEmployeeInsurance()
+    }
+   this.http._post(path, formData).subscribe(
+                (success) => {
+                 alert(success._body);
+              },
+                (error) => alert(error)
+            ); 
+  }
 }
 class paymentReport {
   from: string

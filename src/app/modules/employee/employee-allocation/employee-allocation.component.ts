@@ -9,6 +9,7 @@ import { EmployeeService } from 'src/app/modules/employee/shared/employee.servic
 export class EmployeeAllocationComponent implements OnInit {
   workSites
   searchdata
+  workSite
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {

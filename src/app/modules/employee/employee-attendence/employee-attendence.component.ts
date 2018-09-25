@@ -9,6 +9,7 @@ import { EmployeeService } from 'src/app/modules/employee/shared/employee.servic
 export class EmployeeAttendenceComponent implements OnInit {
   workSites
   searchdata
+  workSite
   today:Date=new Date()
   constructor(private employeeService: EmployeeService) { }
 

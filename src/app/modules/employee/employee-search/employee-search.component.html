@@ -134,7 +134,7 @@
               <div class="input-group mt-3 mb-3">
                     <input class="form-control my-0 py-1 grey-border" (keydown.enter)="getEmployee($event)" type="text" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search">
                     <div class="input-group-append">
-                  <button type="submit" class="btn" (click)="getEmployee()">
+                  <button type="submit" class="btn" (click)="getEmployee($event)">
                     Search
                   </button>
                 </div>

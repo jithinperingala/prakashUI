@@ -33,5 +33,7 @@ export class PaymentSummaryComponent implements OnInit {
     }
 
   }
-
+  DeleteEmployee(){
+    
+  }
 }

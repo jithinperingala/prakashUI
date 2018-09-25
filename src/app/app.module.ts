@@ -21,7 +21,6 @@ import { EmployeeModule } from 'src/app/modules/employee/employee.module';
 import { LoginComponent } from './modules/login/login.component';
 import { PaymentComponent } from './modules/employee/payment/payment.component';
 import { PaymentSummaryComponent } from 'src/app/modules/employee/payment-summary/payment-summary.component';
-import { MeterialPurchaseComponent } from 'src/app/modules/accounts/meterial-purchase/meterial-purchase.component';
 import { EmployeeAllocationComponent } from './modules/employee/employee-allocation/employee-allocation.component';
 import { EmployeeAttendenceComponent } from 'src/app/modules/employee/employee-attendence/employee-attendence.component';
 
@@ -37,7 +36,6 @@ import { EmployeeAttendenceComponent } from 'src/app/modules/employee/employee-a
     LoginComponent,
     PaymentComponent,
     PaymentSummaryComponent,
-    MeterialPurchaseComponent,
     EmployeeAllocationComponent,
     EmployeeAttendenceComponent
   ],
