@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { NotifyService } from '../notification/notify.service';
 import { Environment } from '../ajax/environment';
@@ -20,7 +20,7 @@ export class AjaxService {
           this.notifyService._ajaxinternetConectivity();
         }
 
-        return Observable.throw(error.status);
+        return of(error);
       }))
 
 
@@ -33,7 +33,7 @@ export class AjaxService {
           this.notifyService._ajaxinternetConectivity();
         }
 
-        return Observable.throw(error.status);
+        return of(error);
       }))
   }
 
