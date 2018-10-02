@@ -148,7 +148,7 @@
                     <tr>
                             <th scope="col" (click)="sortWithTitle('employee_code')">Code</th>
                             <th scope="col" (click)="sortWithTitle('first_name')">Name</th>
-                            <th scope="col" (click)="sortWithTitle('employee_type_name')">Type</th>
+                            <th scope="col" (click)="sortWithTitle('mobile')">Contact Number</th>
                             <th scope="col" (click)="sortWithTitle('identity_card_number')">Aadhaar Number</th>
                             <th scope="col" (click)="sortWithTitle('insurance_number')">Insurance Number</th>
                             <th scope="col" (click)="sortWithTitle('address')">Address</th>
@@ -157,10 +157,10 @@
                         </tr>
                   </thead>
                   <tbody>
-                        <tr *ngFor="let emp of searchdata">
+                        <tr *ngFor="let emp of searchdata" [ngClass]="{'has-error': emp.insurance_number==''}">
                                 <th scope="row">{{emp.employee_code}}</th>
                                 <td>{{emp.first_name}}</td>
-                                <td>{{emp.employee_type_name}}</td>
+                                <td>{{emp.mobile}}</td>
                                 <td>{{emp.identity_card_number}}</td>
                                 <td>{{emp.insurance_number}}</td>
                                 <td>{{emp.address}}</td>

@@ -13,6 +13,7 @@ export class Pathgenerator {
             uploadEmployeeImage:'employee/createUpdateEmployee/photoUpload',
             uploadAadar:'employee/createUpdateEmployee/aadarUpload',
             uploadInsurance:'employee/createUpdateEmployee/insuranceUpload',
+            uploadBlob:'employee/createUpdateEmployee/blobUpload',
 
             getEmployeeType: 'employee/getEmployeeType',
             createUpdateEmployeeType:'employee/createUpdateEmployeeType',
@@ -31,6 +32,9 @@ export class Pathgenerator {
     }
     uploadEmployeeImage(){
         return this.generatePath(this.uriCollection.uploadEmployeeImage)
+    }
+    uploadEmployeeImageBlob(){
+        return this.generatePath(this.uriCollection.uploadBlob)
     }
     uploadEmployeeInsurance(){
         return this.generatePath(this.uriCollection.uploadInsurance)

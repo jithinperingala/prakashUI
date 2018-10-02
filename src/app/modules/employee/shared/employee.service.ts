@@ -101,11 +101,23 @@ export class EmployeeService {
   else
     return of()
   }
+  saveBlob(blob,id){
+    this.http._post(this.pathgen.uploadEmployeeImageBlob(), {formData:blob,empid:id}).subscribe(
+      (success) => {
+       console.log(success._body);
+    },
+      (error) => console.log(error)
+  );
+  }
   savePhoto(formData,id){
     console.log(formData)
     let path
+    
     if(id=='photo'){
      path= this.pathgen.uploadEmployeeImage()
+    }
+    else if(id=='canvas'){
+      path= this.pathgen.uploadEmployeeImage()
     }
     else if(id=='aadar'){
       path= this.pathgen.uploadEmployeeAadar()

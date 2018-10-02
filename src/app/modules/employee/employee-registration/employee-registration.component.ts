@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -19,21 +19,67 @@ export class EmployeeRegistrationComponent implements OnInit {
 
   cardForm: FormGroup;
   empNameEdit;
-  searchId
+  searchId;
+  isFormValid
   public uploader: FileUploader = new FileUploader({ url: config._baseURL, itemAlias: 'photo' });
-  constructor(private fb: FormBuilder, private EmployeeService: EmployeeService, private navigate: NavigateService, private ActivatedRoute: ActivatedRoute, private NotifyService: NotifyService, private el: ElementRef) {
 
+  @ViewChild("video")
+  public video: ElementRef;
+
+  @ViewChild("canvas")
+  public canvas: ElementRef;
+
+  public captures: Array<any>;
+  formErrors = {
+    empName: '',
+    empType: '',
+    contactno: '',
+    dob: '',
+    gender: '',
+    address:'',
+    aadarNumber:''
+
+  };
+
+  validationMessages = {
+    empName: {
+      'required': 'Employee Name is required',
+    },
+    empType: {
+      'required': 'Employee type is required',
+    },
+    contactno: {
+      'required': 'Contact number is required',
+      'minlength': 'Contact number should be of 10 digits',
+
+    },
+    dob: {
+      'required': 'Date of Birth is required'
+    },
+    gender: {
+      'required': 'Gender is required'
+    }, 
+    address: {
+      'required': 'Address is required'
+    },
+    aadarNumber: {
+      'required': 'Aadhaar is required',
+    }
+  };
+  constructor(private fb: FormBuilder, private EmployeeService: EmployeeService, private navigate: NavigateService, private ActivatedRoute: ActivatedRoute, private NotifyService: NotifyService, private el: ElementRef) {
+    this.captures = [];
+    this.isFormValid = false;
     this.cardForm = this.fb.group({
-      empName: ['', Validators.required],
+      empName: ['', [Validators.required]],
       empType: ['', [Validators.required]],
       aadarNumber: ['', Validators.required],
       insuranceNumber: [''],
       address: ['', Validators.required],
       fileupload: [''],
-      contactno: ['', Validators.required],
+      contactno: ['', [Validators.required,Validators.minLength(10)]],
       email: [''],
       officialNumber: [''],
-      dob: [''],
+      dob: ['',Validators.required],
       gender: [''],
       contactPerson: [''],
       contactPersonMobile: [''],
@@ -41,6 +87,21 @@ export class EmployeeRegistrationComponent implements OnInit {
       wagesType: [""],
       salaryAmount: ["0"]
     });
+    this.cardForm.valueChanges.subscribe((data) => {
+        
+      for (let field in this.formErrors) {
+          this.formErrors[field] = '';
+          let input = this.cardForm.get(field);
+
+          if (input.invalid) {
+              for (let err in input.errors) {
+                  this.formErrors[field] = this.validationMessages[field][err];
+              }
+          }
+      }
+
+      this.isFormValid = this.cardForm.valid;
+  });
 
     this.EmployeeService.getEmployeeType().subscribe(res => {
       console.log("app-emp-reg", res)
@@ -52,7 +113,7 @@ export class EmployeeRegistrationComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log("ImageUpload:uploaded:", item, status, response);
-     
+
     };
     this.searchId = this.ActivatedRoute.snapshot.params['id']
     this.cardForm.controls.empType.setValue(1)
@@ -77,16 +138,32 @@ export class EmployeeRegistrationComponent implements OnInit {
         this.cardForm.controls.contactPesonRelation.setValue(res.ref_relation)
         this.cardForm.controls.wagesType.setValue(res.salary_type)
         this.cardForm.controls.salaryAmount.setValue(res.salary)
-
-
       })
-
     }
-
-
   }
-  upload(id,empid) {
-    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#'+id);
+  public ngAfterViewInit() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+        this.video.nativeElement.src = window.URL.createObjectURL(stream);
+        this.video.nativeElement.play();
+      });
+    }
+  }
+
+  public capture() {
+    this.captures = []
+    var context = this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 200, 150);
+    this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
+    console.log(this.captures)
+  }
+  public clearPhoto() {
+    this.captures = []
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+    inputEl.value = null
+  }
+
+  upload(id, empid) {
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#' + id);
     console.log("iam+ " + inputEl);
     let fileCount: number = inputEl.files.length;
     let formData = new FormData();
@@ -95,19 +172,26 @@ export class EmployeeRegistrationComponent implements OnInit {
       for (let i = 0; i < fileCount; i++) {
         formData.append('photo', inputEl.files.item(i));
       }
-      this.EmployeeService.savePhoto(formData,id)
+      this.EmployeeService.savePhoto(formData, id)
     }
+  }
+
+  uploadImg(empid) {
+    if (this.captures.length > 0)
+      this.EmployeeService.saveBlob(this.captures[0], empid)
   }
   SaveData(data) {
     console.log(data)
     if (this.searchId) {
       data.employee_id = this.searchId
       data.createUpdate = "1"
-      
+
       this.EmployeeService.createEmployee(data).subscribe(res => {
+        //  this.upload('canvas', data.employee_id);
         this.upload('photo', data.employee_id);
         this.upload('aadar', data.employee_id)
         this.upload('insurance', data.employee_id)
+        this.uploadImg(data.employee_id)
         this.NotifyService._sucessMessage()
         this.navigate._navigate('')
       })
@@ -115,15 +199,16 @@ export class EmployeeRegistrationComponent implements OnInit {
     else {
       data.createUpdate = "0"
       this.EmployeeService.updateEmployee(data).subscribe(res => {
-        console.log("jijijji",res[0][0]['employeeId'])
-       this.upload('photo',res[0][0]['employeeId']);
-        this.upload('aadar',res[0][0]['employeeId'])
-        this.upload('insurance',res[0][0]['employeeId'])
+        console.log("jijijji", res[0][0]['employeeId'])
+        // this.upload('canvas', res[0][0]['employeeId']);
+        this.uploadImg(res[0][0]['employeeId'])
+        this.upload('photo', res[0][0]['employeeId']);
+        this.upload('aadar', res[0][0]['employeeId'])
+        this.upload('insurance', res[0][0]['employeeId'])
         this.NotifyService._sucessMessage()
         // this.navigate._navigate('')
         this.cardForm.reset()
       })
     }
   }
-
 }
