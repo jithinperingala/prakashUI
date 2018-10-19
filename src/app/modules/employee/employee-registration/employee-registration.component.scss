@@ -1,0 +1,31 @@
+.mdb-select {
+   margin-left: 2.5rem;
+   width: calc(100% - 2.5rem);
+   border: none !important;
+   border-bottom: 1px solid #ced4da !important;
+}
+.md-form {
+    margin-top: 2.5rem !important;
+}
+.custom-file-label{
+    border: none !important;
+    border-bottom: 1px solid #ced4da !important;
+    border-radius: 0 !important;
+}
+.custom-file-label::after{
+    border: none;
+    border-radius: 0;
+}
+.custom-file-input:focus ~ .custom-file-label{
+    -webkit-box-shadow: 0 1px 0 0 #4285f4;
+    box-shadow: 0 1px 0 0 #4285f4;
+    border-bottom: 1px solid #4285f4;
+}
+.not-allowed {cursor: not-allowed;}
+.pointer {cursor: pointer;}
+.has-error{
+color: red
+}
+.has-success{
+    color: green
+}

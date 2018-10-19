@@ -1,0 +1,185 @@
+<!-- <div class="card">
+    <div class="card-body">
+
+     
+        <div class="row">
+
+           
+            <div class="col-md-12">
+
+                <div class="input-group md-form form-sm form-2 pl-0 mb-0">
+                    <input class="form-control my-0 py-1 grey-border" (keydown.enter)="getEmployee($event)" type="text" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append" (click)="getEmployee()">
+                        <span class="input-group-text waves-effect grey lighten-3" id="basic-addon1">
+                            <a ><i class="fa fa-search text-grey" aria-hidden="true"></i></a>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+         
+
+        </div>
+      
+
+        <div class="px-4">
+
+           
+            <table class="table table-hover table-responsive-md mb-0">
+    
+                
+                <thead>
+                    <tr>
+                        <th scope="row" (click)="sortWithTitle('employee_code')">Code</th>
+                        <th class="th-lg" (click)="sortWithTitle('first_name')">Name</th>
+                        <th class="th-lg" (click)="sortWithTitle('employee_type_name')">Type</th>
+                        <th class="th-lg" (click)="sortWithTitle('identity_card_number')">Aadhaar Number</th>
+                        <th class="th-lg" (click)="sortWithTitle('insurance_number')">Insurance Number</th>
+                        <th class="th-lg" (click)="sortWithTitle('address')">Address</th>
+                <th></th>
+                <th></th>
+                    </tr>
+                </thead>
+               
+                <tbody >
+                    <tr *ngFor="let emp of searchdata">
+                        <th scope="row">{{emp.employee_code}}</th>
+                        <td>{{emp.first_name}}</td>
+                        <td>{{emp.employee_type_name}}</td>
+                        <td>{{emp.identity_card_number}}</td>
+                        <td>{{emp.insurance_number}}</td>
+                        <td>{{emp.address}}</td>
+                        <td>
+                            <button class="btn btn-default btn-sm" (click)="editEmployee(emp.employee_id)">
+                                <i class="fa fa-edit"> </i>
+                            </button>
+                        </td>
+                       <td>
+                           <button class="btn btn-danger btn-sm" (click)="basicModal.show();employeeToDelete=emp" data-toggle="modal" data-target="#exampleModal">
+                               <i class="fa fa-trash"> </i>
+                            </button>
+                        </td>
+                       
+                    </tr>
+                   
+                </tbody>
+               
+            </table>
+    
+        </div> -->
+    
+            <!-- ///////// Delete popup model-->   
+            <div ng-template #template class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                            <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           Do you want to delete Employee
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" >No</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="DeleteEmployee()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- /////////-->   
+
+        
+
+<div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                  <div class="col">
+                    <h3 class="card-title">Search Employee</h3>
+                    <p class="page-dir"> <i class="material-icons">home</i>Home / Employee / Search Employee</p>
+                  </div>
+                  <div class="col">
+                      
+                  </div>
+                  </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+ 
+    <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+                <div class="md-form">
+                    <i class="fa fa-suitcase prefix grey-text"></i>
+                    
+                    <!--Blue select-->
+                    <select id="empType" class="mdb-select form-control" [(ngModel)]="empType" mdbInputDirective>
+                      <option  *ngFor="let type of employeetype" [value]="type.type_id">{{type.employee_type_name}}</option>
+                    </select>
+                    <label for="empType" class="font-weight-light">Work Type</label>
+                    <!--/Blue select-->
+            
+                  </div>
+            
+        
+              <!-- Search Bar Here -->
+
+              <div class="input-group mt-3 mb-3">
+                    <input class="form-control my-0 py-1 grey-border" (keydown.enter)="getEmployee($event)" type="text" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                  <!-- <button type="submit" class="btn" (click)="getEmployee($event)">
+                    Search
+                  </button> -->
+                </div>
+              </div>
+
+              <!-- Search Bar Here -->
+
+              <table class="table table-hover">
+                  <thead>
+        
+                    <tr>
+                            <th scope="col" (click)="sortWithTitle('employee_code')">Code</th>
+                            <th scope="col" (click)="sortWithTitle('first_name')">Name</th>
+                            <th scope="col" (click)="sortWithTitle('mobile')">Contact Number</th>
+                            <th scope="col" (click)="sortWithTitle('identity_card_number')">Aadhaar Number</th>
+                            <th scope="col" (click)="sortWithTitle('insurance_number')">Insurance Number</th>
+                            <th scope="col" (click)="sortWithTitle('address')">Address</th>
+                    <th></th>
+                    <th></th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                        <tr *ngFor="let emp of searchdata" [ngClass]="{'has-error': emp.insurance_number==''}">
+                                <th scope="row">{{emp.employee_code}}</th>
+                                <td>{{emp.first_name}}</td>
+                                <td>{{emp.mobile}}</td>
+                                <td>{{emp.identity_card_number}}</td>
+                                <td>{{emp.insurance_number}}</td>
+                                <td>{{emp.address}}</td>
+                                <td>
+                                    <button class="btn btn-link" (click)="editEmployee(emp.employee_id)">
+                                            <i class="material-icons">add_box</i>
+                                    </button>
+                                </td>
+                               <td>
+                                   <button class="btn btn-link" (click)="employeeToDelete=emp" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="material-icons">remove_circle</i>
+                                    </button>
+                                </td>
+                               
+                            </tr>
+                           
+                  </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>

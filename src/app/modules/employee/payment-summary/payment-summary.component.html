@@ -1,0 +1,198 @@
+<div class="card">
+  <div class="card-body">
+
+      <!-- Grid row -->
+      <div class="row">
+
+          <!-- Grid column -->
+          <div class="col-md-12">
+
+              <div class="input-group md-form form-sm form-2 pl-0 mb-0">
+                    <select (change)="getaccountSummary()" class="form-control my-0 py-1 grey-border" [value]="employeeData" bindLabel="first_name" bindValue="employee_id" [(ngModel)]="searchKey">
+                        </select>
+                  <!-- <input  type="text" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search"> -->
+                  <div class="input-group-append" (click)="getaccountSummary()">
+                      <span class="input-group-text waves-effect grey lighten-3" id="basic-addon1">
+                          <a ><i class="fa fa-search text-grey" aria-hidden="true"></i></a>
+                      </span>
+                  </div>
+              </div>
+
+          </div>
+          <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+      <div class="px-4">
+
+          <!--Table-->
+          <table class="table table-hover table-responsive-md mb-0">
+  
+              <!--Table head-->
+              <thead>
+                  <tr>
+                      <th scope="th-lg">Date</th>
+                      <th class="th-lg">From</th>
+                      <th class="th-lg">To</th>
+                      <th class="th-lg">recieve</th>
+                      <th class="th-lg">pay</th>
+                      <th></th>
+                      <th></th>
+              <th></th>
+              <th></th>
+                  </tr>
+              </thead>
+             
+              <tbody >
+                  <tr *ngFor="let emp of searchdata">
+                      <td>{{emp.date|date:'dd/MM/yyyy'}}</td>
+                      <td>{{emp.from}}</td>
+                      <td>{{emp.to}}</td>
+                      <td >{{emp.debitAmount}}</td>
+                      <td >{{emp.creditAmount}}</td>
+                      
+                     
+                  </tr>
+                 
+              </tbody>
+              
+          </table>
+  
+      </div>
+  
+          <!-- ///////// Delete popup model-->   
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                          <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                         Do you want to delete Employee
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                          <button type="button" class="btn btn-primary" (click)="DeleteEmployee()">Save changes</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      <!-- /////////-->   
+     
+
+  </div>
+</div>
+<!-- Modal -->
+<div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                  <div class="col">
+                    <h3 class="card-title">Payment Summery</h3>
+                    <p class="page-dir"> <i class="material-icons">home</i>Home / Employee / Payment Summery</p>
+                  </div>
+                  <div class="col">
+                      
+                  </div>
+                  </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+ 
+    <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+
+              <!-- Search Bar Here -->
+
+              <!-- Search Bar Here -->
+              
+              <div class="payment-summary">
+
+                <div class="transaction credit">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="pr">Kiran</div>
+                    <div class="tran-remark">PC0008765/ Jithin/KIRAN</div>
+                    <div class="tran-type">Credit</div>
+                    </div>
+                    <div class="col-md-4">
+                      <span class="amount">5000</span>
+                      <div class="tran-time"><i class="material-icons">access_time</i> 01:47 AM / 11 Sep 2018</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="transaction debit">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="pr">Kiran</div>
+                        <div class="tran-remark">PC0008765/ Jithin/KIRAN</div>
+                        <div class="tran-type">Debit</div>
+                      </div>
+                      <div class="col-md-4">
+                        <span class="amount">5000</span>
+                        <div class="tran-time"><i class="material-icons">access_time</i> 01:47 AM / 11 Sep 2018</div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="transaction debit">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="pr">Kiran</div>
+                        <div class="tran-remark">PC0008765/ Jithin/KIRAN</div>
+                        <div class="tran-type">Debit</div>
+                      </div>
+                      <div class="col-md-4">
+                        <span class="amount">5000</span>
+                        <div class="tran-time"><i class="material-icons">access_time</i> 01:47 AM / 11 Sep 2018</div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="transaction credit">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="pr">Kiran</div>
+                    <div class="tran-remark">PC0008765/ Jithin/KIRAN</div>
+                    <div class="tran-type">Credit</div>
+                    </div>
+                    <div class="col-md-4">
+                      <span class="amount">5000</span>
+                      <div class="tran-time"><i class="material-icons">access_time</i> 01:47 AM / 11 Sep 2018</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="transaction credit">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="pr">Kiran</div>
+                    <div class="tran-remark">PC0008765/ Jithin/KIRAN</div>
+                    <div class="tran-type">Credit</div>
+                    </div>
+                    <div class="col-md-4">
+                      <span class="amount">5000</span>
+                      <div class="tran-time"><i class="material-icons">access_time</i> 01:47 AM / 11 Sep 2018</div>
+                    </div>
+                  </div>
+                </div>
+
+                
+
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    </div>

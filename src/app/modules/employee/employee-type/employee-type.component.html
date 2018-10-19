@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col"> 
+        <table class="table table-hover table-responsive-md">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Employee Type</th>
+                <th>Employee Code</th>
+                <th colspan="2" class="text-right">
+                    <button class="btn btn-primary btn-sm" (click)="createType()" data-toggle="modal" data-target="#modalLoginForm">
+                        <i class="fa fa-plus"></i>  Add New Employee Type
+                    </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let type of employeeTypes;let i =index">
+                <th scope="row" valign="center">{{i+1}}</th>
+                <td class="th-lg">{{type.employee_type_name}}</td>
+                <td class="th-lg">M</td>
+                <td class="text-right">
+                    <button class="btn btn-default btn-sm" (click)="editEmployeePopup(type)">
+                        <i class="fa fa-edit"> </i>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="deleteEmployee()">
+                        <i class="fa fa-trash"> </i>
+                     </button>
+                 </td>
+              </tr>
+              
+            </tbody>
+          </table>
+    </div>
+</div>
+<form [formGroup]="cardForm" (ngSubmit)="saveEmployeeType(cardForm.value)">
+
+<div  class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Employee Type</h4>
+                <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="text" id="employeeType" formControlName="employeeType" class="form-control" mdbInputDirective>
+                    <label for="employeeType" class="font-weight-light">Employee Type</label>
+                  </div>
+
+                  <div class="md-form">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="text" id="employeeCode" formControlName="employeeCode" class="form-control" mdbInputDirective>
+                    <label for="employeeCode" class="font-weight-light">Employee Code</label>
+                  </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-default">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+-----**-----
+<!-- <app-delete-popup [showPopup]="showPopup"  (Onclose)="popupClosed()"></app-delete-popup> -->

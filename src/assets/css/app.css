@@ -1,0 +1,295 @@
+body{
+    background: #eeeeee;;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #404040;
+}
+#wrapper{padding:90px 15px;}
+.navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
+.card{margin-bottom: 15px; border-radius:0; box-shadow: 0 3px 5px rgba(0,0,0,.1); }
+.header-top{box-shadow: 0 3px 5px rgba(0,0,0,.1)}
+.leftmenutrigger{display: none}
+@media(min-width:992px) {
+.leftmenutrigger{
+    display: block;
+    display: block;
+    margin: 7px 20px 4px 0;
+    cursor: pointer;
+}
+#wrapper{padding: 90px 15px 15px 15px; }
+.navbar-nav.side-nav.open {left:0;}
+.navbar-expand-lg .navbar-nav.side-nav .dropdown-menu{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+.navbar-expand-lg .navbar-nav.side-nav .dropdown-menu .dropdown-item{
+    font-size: .9rem;
+    padding-left: 45px;
+}
+.navbar-nav.side-nav{
+    background: #ffffff;
+    box-shadow: 2px 1px 2px rgba(0,0,0,.1);
+    position:fixed;top:56px;
+    flex-direction: column!important;
+    left:-260px;
+    width:240px;
+    overflow-y:auto;
+    bottom:0;
+    overflow-x:hidden;
+    padding-bottom:40px
+}
+.navbar-nav.side-nav .nav-link{
+    color: rgba(0, 0, 0, 1);
+    font-size: .9rem;
+    font-weight: 500;
+}
+.navbar-nav.side-nav .nav-link .material-icons {
+    font-size: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.54);
+}
+.navbar-nav.side-nav .nav-link:hover{
+    background: rgba(0, 0, 0, 0.03);
+    color: rgba(0, 0, 0, 1);
+}
+.navbar-nav.side-nav .nav-link:focus{
+    background: rgba(0, 0, 0, 0.03);
+    color: rgba(0, 0, 0, 1);
+}
+.navbar-nav.side-nav .label{
+    font-size: .8rem;
+    padding: 5px 10px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.54);
+}
+}
+.animate{
+    -webkit-transition:all .3s ease-in-out;
+    -moz-transition:all .3s ease-in-out;
+    -o-transition:all .3s ease-in-out;
+    -ms-transition:all .3s ease-in-out;
+    transition:all .3s ease-in-out
+}
+
+.navbar{
+    background:#3f51b5 !important;
+}
+
+.card {
+    border:0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.26) !important;
+}
+.widget {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 3px;
+}
+.widget.widget-fullwidth {
+    padding: 0;
+}
+.widget.widget-fullwidth .widget-head {
+    padding: 20px 20px 10px;
+    margin-bottom: 0;
+}
+.widget-head {
+    margin-bottom: 20px;
+    display: block;
+    border-radius: 3px 3px 0 0;
+}
+.widget-head .title {
+    display: block;
+    font-size: 1.385rem;
+    font-weight: 300;
+}
+.widget-head .description {
+    display: block;
+    color: #9e9e9e;
+    line-height: 22px;
+    font-weight: 300;
+    font-size: .8rem;
+}
+.widget .table thead th{
+    color: #4285f4;
+    font-size: .9rem;
+}
+.widget .table th, .widget .table td{
+    font-size: .8rem;
+}
+.navbar-nav>li.dropdown .dropdown-menu.menu-01:after, .navbar-nav>li.dropdown .dropdown-menu.menu-02:after {
+    border-bottom: 8px solid #fff;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    top: -8px;
+    content: "";
+    display: inline-block;
+    margin-left: -6px;
+    position: absolute;
+}
+.dropdown-menu:after {
+    left: auto;
+    right: 13px;
+    border-bottom-color: #4285f4;
+}
+.dropdown-menu.menu-01{
+    border-radius: 0 !important;
+    margin: .5rem 0 0 !important;
+    width: 220px;
+    padding: 0 0 7px;
+    left: -178px;
+}
+.dropdown-menu.menu-02{
+    border-radius: 0 !important;
+    margin: .5rem 0 0 !important;
+    width: 300px;
+    padding: 0;
+}
+.dropdown-menu .footer a {
+    background-color: #fafafa;
+    font-size: 1rem;
+    color: #8a8a8a;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #ebebeb;
+    display: block;
+    outline: 0;
+}
+.dropdown-menu.menu-01 .user-info {
+    background-color: #4285f4;
+    color: #fff;
+    overflow: hidden;
+    padding: 20px 15px 14px;
+    border-radius: 2px 2px 0 0;
+    margin-bottom: 7px;
+}
+.dropdown-menu .user-info .user-name{
+    font-size: 16px;
+}
+.dropdown-menu .user-info .user-email{
+    font-size: 12px;
+}
+.dropdown-menu>a {
+    color: #504e4e;
+    padding: 10px 20px;
+    min-width: 175px;
+    line-height: 18px;
+}
+.dropdown-item .material-icons{
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.connection-item {
+    display: block;
+    border-radius: 3px;
+    line-height: 34px;
+    text-align: center;
+    padding: 15px 0 9px;
+    display: block;
+    border: 1px solid transparent;
+    color: #737373;
+}
+.connection-item span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.form-control{
+    border: 0px;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    margin-bottom: 3px;
+}
+.form-control:focus{
+    box-shadow: none;
+    border-width: 2px;
+    margin-bottom: 1;
+}
+label{
+    color: #9e9e9e;
+}
+.btn, .btn-large, .sp-container button, .fc button, .btn-flat {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    outline: 0;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+.page-dir{
+    font-size: .8rem;
+    color: #737373;
+}
+.page-dir .material-icons{
+    vertical-align: text-bottom;
+    font-size: 1rem;
+}
+
+/*Payment Summery*/
+.payment-summary{
+
+}
+.payment-summary .transaction{
+    width: 100%;
+    padding: 10px;
+    border-bottom: 2px solid;
+    margin-bottom: 10px;
+}
+.payment-summary .transaction.debit{
+    border-color: #f44336;
+}
+.payment-summary .transaction .pr{
+    font-weight: 500;
+}
+.payment-summary .transaction.debit .pr::before{
+    content: 'Cr. ';
+    font-weight: 500;
+}
+.payment-summary .transaction.credit .pr::before{
+    content: 'Dr. ';
+    font-weight: 500;
+}
+.payment-summary .transaction.credit{
+    border-color: #4caf50;
+}
+.payment-summary .transaction.credit .amount{
+    color: #4caf50;
+    font-size: 2rem;
+}
+.payment-summary .transaction.credit .amount::before{
+    content: '+ ₹';
+}
+.payment-summary .transaction.debit .amount{
+    color: #f44336;
+    font-size: 2rem;
+}
+.payment-summary .transaction.debit .amount::before{
+    content: '- ₹';
+}
+.payment-summary .transaction .tran-type{
+    font-size: .9rem;
+    color: #737373;
+}
+.payment-summary .transaction .tran-time{
+    font-size: .9rem;
+    color: #737373;
+}
+.payment-summary .transaction .tran-remark{
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.payment-summary .transaction .tran-time .material-icons{
+    vertical-align: text-bottom;
+    font-size: 1rem;
+}
+/*Payment Summery*/
