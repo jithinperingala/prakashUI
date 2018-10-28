@@ -1,9 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild,OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 import { NavigateService } from 'src/app/core/services/navigation/navigate.service';
 import { EmployeeService } from 'src/app/modules/employee/shared/employee.service';
@@ -15,16 +14,16 @@ import { config } from 'src/app/configs/app-settings.config'
   templateUrl: './employee-registration.component.html',
   styleUrls: ['./employee-registration.component.scss']
 })
-export class EmployeeRegistrationComponent implements OnInit {
+export class EmployeeRegistrationComponent implements OnInit,OnDestroy {
 
   cardForm: FormGroup;
   empNameEdit;
   searchId;
   isFormValid
-  public uploader: FileUploader = new FileUploader({ url: config._baseURL, itemAlias: 'photo' });
+  //public uploader: FileUploader = new FileUploader({ url: config._baseURL, itemAlias: 'photo' });
 
-  @ViewChild("video")
-  public video: ElementRef;
+   @ViewChild("video")
+   public video: ElementRef;
 
   @ViewChild("canvas")
   public canvas: ElementRef;
@@ -110,11 +109,11 @@ export class EmployeeRegistrationComponent implements OnInit {
   }
   employeetype
   ngOnInit() {
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log("ImageUpload:uploaded:", item, status, response);
+    // this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    // this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+    //   console.log("ImageUpload:uploaded:", item, status, response);
 
-    };
+    // };
     this.searchId = this.ActivatedRoute.snapshot.params['id']
     this.cardForm.controls.empType.setValue(1)
     this.cardForm.controls.gender.setValue(0)
@@ -142,12 +141,23 @@ export class EmployeeRegistrationComponent implements OnInit {
     }
   }
   public ngAfterViewInit() {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-        this.video.nativeElement.src = window.URL.createObjectURL(stream);
-        this.video.nativeElement.play();
+    // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+    //     this.video.nativeElement.src = window.URL.createObjectURL(stream);
+        
+    //   });
+    // }
+    var video1 = document.getElementById('video');
+    navigator.mediaDevices.getUserMedia({
+        video: true
+      })
+      .then(function(stream) {
+        video1['srcObject'] = stream;
+      
+      })
+      .catch(function() {
+        console.log('error');
       });
-    }
   }
 
   public capture() {
@@ -193,12 +203,12 @@ export class EmployeeRegistrationComponent implements OnInit {
         this.upload('insurance', data.employee_id)
         this.uploadImg(data.employee_id)
         this.NotifyService._sucessMessage()
-        this.navigate._navigate('')
+        this.navigate._navigate('dashbord')
       })
     }
     else {
       data.createUpdate = "0"
-      this.EmployeeService.updateEmployee(data).subscribe(res => {
+     this.EmployeeService.updateEmployee(data).subscribe(res => {
         console.log("jijijji", res[0][0]['employeeId'])
         // this.upload('canvas', res[0][0]['employeeId']);
         this.uploadImg(res[0][0]['employeeId'])
@@ -209,6 +219,16 @@ export class EmployeeRegistrationComponent implements OnInit {
         // this.navigate._navigate('')
         this.cardForm.reset()
       })
+      
     }
+  }
+  ngOnDestroy(){
+    navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: true
+    }).then(stream => {
+      // stream.stop(); // Deprecated
+      stream.getVideoTracks()[0].stop(); // Recommended
+    });
   }
 }

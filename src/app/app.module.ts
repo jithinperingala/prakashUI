@@ -1,12 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpClientModule } from '@angular/common/http'
-import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
+import { ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NotificationComponent } from 'src/app/core/services/notification/notification.component';
@@ -23,6 +20,8 @@ import { PaymentComponent } from './modules/employee/payment/payment.component';
 import { PaymentSummaryComponent } from 'src/app/modules/employee/payment-summary/payment-summary.component';
 import { EmployeeAllocationComponent } from './modules/employee/employee-allocation/employee-allocation.component';
 import { EmployeeAttendenceComponent } from 'src/app/modules/employee/employee-attendence/employee-attendence.component';
+import { LandingpageComponent } from './modules/landingpage/landingpage.component';
+import { NotificationModule } from './core/services/notification/notification.module';
 
 @NgModule({
   declarations: [
@@ -37,21 +36,15 @@ import { EmployeeAttendenceComponent } from 'src/app/modules/employee/employee-a
     PaymentComponent,
     PaymentSummaryComponent,
     EmployeeAllocationComponent,
-    EmployeeAttendenceComponent
+    EmployeeAttendenceComponent,
+    LandingpageComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule, BrowserAnimationsModule, MDBBootstrapModule.forRoot(), FormsModule, ReactiveFormsModule,
-    SimpleNotificationsModule.forRoot(), HttpClientModule, AppRoutingModule, EmployeeModule,SharedModule,NgSelectModule
+    BrowserModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule,
+    NotificationModule,HttpClientModule, AppRoutingModule, EmployeeModule,SharedModule,ModalModule.forRoot()
   ],
-  exports:[SharedModule]
-  ,
-  schemas: [NO_ERRORS_SCHEMA],
-  providers: [{
-    provide: NG_SELECT_DEFAULT_CONFIG,
-    useValue: {
-        notFoundText: 'Custom not found'
-    }
-}],
-  bootstrap: [AppComponent]
+  exports:[SharedModule],
+  bootstrap: [AppComponent],
+  entryComponents:[LoginComponent]
 })
 export class AppModule { }

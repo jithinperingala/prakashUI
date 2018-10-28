@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router'
-import { ModalDirective } from 'angular-bootstrap-md';
 import { EmployeeService } from 'src/app/modules/employee/shared/employee.service';
 import { NotifyService } from '../../../core/services/notification/notify.service';
 import{OrderbyPipe} from '../../../shared/pipes/orderby.pipe'
-
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalService } from 'ngx-bootstrap';
+ 
 @Component({
   selector: 'app-emp-search',
   templateUrl: './employee-search.component.html',
@@ -16,8 +17,8 @@ export class EmployeeSearchComponent implements OnInit {
   orderBy=new OrderbyPipe()
   employeetype
   empType='1'
-  @ViewChild('basicModal') public autoShownModal: ModalDirective;
-  constructor(private employeeSer: EmployeeService, private router: Router, private notify: NotifyService,private EmployeeService: EmployeeService) { }
+  modalRef: BsModalRef;
+  constructor(private employeeSer: EmployeeService, private router: Router, private notify: NotifyService,private EmployeeService: EmployeeService,private modalService: BsModalService) { }
 
   ngOnInit() {
     this.EmployeeService.getEmployeeType().subscribe(res => {
@@ -41,7 +42,7 @@ export class EmployeeSearchComponent implements OnInit {
 
     this.employeeSer.DeleteEmployee(this.employeeToDelete.employee_id).subscribe(res => {
       console.log(res)
-      this.autoShownModal.hide();
+      this.modalRef = this.modalService.show('');
       let index = this.searchdata.findIndex(x => x.employee_id == this.employeeToDelete.employee_id);
       this.searchdata.splice(index, 1)
       this.notify._sucessDeleteMessage()
@@ -49,8 +50,7 @@ export class EmployeeSearchComponent implements OnInit {
   }
 
   editEmployee(id) {
-
-    this.router.navigate(['employee/edit/', id])
+    this.router.navigate(['dashbord/employee/edit/', id])
   }
   sortWithTitle(title){
     this.searchdata = this.orderBy.transform(this.searchdata,title)

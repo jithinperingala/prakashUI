@@ -27,8 +27,8 @@
       <!-- Material input text -->
       <div class="md-form">
         <i class="fa fa-user prefix grey-text"></i>
-        <ng-select [items]="employeeData" bindLabel="first_name" bindValue="employee_id" formControlName="fromAccount">
-        </ng-select>
+        <select [value]="employeeData" bindLabel="first_name" bindValue="employee_id" formControlName="fromAccount">
+        </select>
          <label *ngIf="!paymentForm.controls.fromAccount?.valid"  class="font-weight-light">From</label>
       </div>
       <div class="md-form">
@@ -44,8 +44,8 @@
       <!-- Material input text -->
       <div class="md-form">
         <i class="fa fa-user prefix grey-text"></i>
-        <ng-select [items]="employeeData" bindLabel="first_name" bindValue="employee_id" formControlName="toAccount">
-        </ng-select>
+        <select [value]="employeeData" bindLabel="first_name" bindValue="employee_id" formControlName="toAccount">
+        </select>
         <label *ngIf="!paymentForm.controls.toAccount?.valid" class="font-weight-light" >To</label>
       </div>
 

@@ -69,12 +69,12 @@
         </div> -->
     
             <!-- ///////// Delete popup model-->   
-            <div mdbModal #basicModal="mdb-modal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div ng-template #template class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
-                            <button type="button" class="close" (click)="basicModal.hide()" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -82,7 +82,7 @@
                            Do you want to delete Employee
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="basicModal.hide()">No</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" >No</button>
                             <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="DeleteEmployee()">Yes</button>
                         </div>
                     </div>
@@ -134,9 +134,9 @@
               <div class="input-group mt-3 mb-3">
                     <input class="form-control my-0 py-1 grey-border" (keydown.enter)="getEmployee($event)" type="text" [(ngModel)]="searchKey" placeholder="Search" aria-label="Search">
                     <div class="input-group-append">
-                  <button type="submit" class="btn" (click)="getEmployee($event)">
+                  <!-- <button type="submit" class="btn" (click)="getEmployee($event)">
                     Search
-                  </button>
+                  </button> -->
                 </div>
               </div>
 
@@ -170,7 +170,7 @@
                                     </button>
                                 </td>
                                <td>
-                                   <button class="btn btn-link" (click)="basicModal.show();employeeToDelete=emp" data-toggle="modal" data-target="#exampleModal">
+                                   <button class="btn btn-link" (click)="modalRef.show(template);employeeToDelete=emp" data-toggle="modal" data-target="#exampleModal">
                                         <i class="material-icons">remove_circle</i>
                                     </button>
                                 </td>

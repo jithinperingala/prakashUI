@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-notification',
-  template: '<simple-notifications [options]="options"></simple-notifications>',
+  template: '<notifier-container></notifier-container>',
 })
 export class NotificationComponent implements OnInit {
 

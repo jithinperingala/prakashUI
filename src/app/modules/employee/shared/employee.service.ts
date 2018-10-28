@@ -26,28 +26,28 @@ export class EmployeeService {
     else { key = key.trim() }
     return this.http._get(this.pathgen.getEmployeeDetails() + "?key=" + key).pipe(
       tap(res => {
-      //  this.employeeDetails = res[0]
-        console.log("this.employeeDetails",this.employeeDetails)
+        //  this.employeeDetails = res[0]
+        console.log("this.employeeDetails", this.employeeDetails)
       })
     )
-    .pipe(map(res=>res[0][0]))
+      .pipe(map(res => res[0][0]))
   }
 
-  getEmployeeByemployeeType(key,emptype) {
+  getEmployeeByemployeeType(key, emptype) {
     console.log("Service key", key)
     if (!key) { key = " " }
     else { key = key.trim() }
-    return this.http._get(this.pathgen.getAllEmployeebyId() + "?key=" + key+"&emptype="+emptype).pipe(
+    return this.http._get(this.pathgen.getAllEmployeebyId() + "?key=" + key + "&emptype=" + emptype).pipe(
       tap(res => {
         this.employeeDetails = res[0]
-        console.log("this.employeeDetails",this.employeeDetails)
+        console.log("this.employeeDetails", this.employeeDetails)
       })
     )
   }
   DeleteEmployee(employeeID) {
     return this.http._get(this.pathgen.deleteEmployee() + "?key=" + employeeID)
   }
-  
+
 
   //////employee type
 
@@ -92,47 +92,51 @@ export class EmployeeService {
 
     paymentReportObj.from = dta.GivenByName
     paymentReportObj.to = dta.GivenToName
-    paymentReportObj.date=dta.TransactionDate
+    paymentReportObj.date = dta.TransactionDate
     return paymentReportObj
   }
-  getBankDetails(id){
+  getBankDetails(id) {
     if (this.employeeDetails)
-    return of(this.employeeDetails.find(res => res['employee_id'] == id))
-  else
-    return of()
+      return of(this.employeeDetails.find(res => res['employee_id'] == id))
+    else
+      return of()
   }
-  saveBlob(blob,id){
-    this.http._post(this.pathgen.uploadEmployeeImageBlob(), {formData:blob,empid:id}).subscribe(
+  saveBlob(blob, id) {
+    this.http._post(this.pathgen.uploadEmployeeImageBlob(), { formData: blob, empid: id }).subscribe(
       (success) => {
-       console.log(success._body);
-    },
+        console.log(success._body);
+      },
       (error) => console.log(error)
-  );
+    );
   }
-  savePhoto(formData,id){
+  savePhoto(formData, id) {
     console.log(formData)
     let path
-    
-    if(id=='photo'){
-     path= this.pathgen.uploadEmployeeImage()
+
+    if (id == 'photo') {
+      path = this.pathgen.uploadEmployeeImage()
     }
-    else if(id=='canvas'){
-      path= this.pathgen.uploadEmployeeImage()
+    else if (id == 'canvas') {
+      path = this.pathgen.uploadEmployeeImage()
     }
-    else if(id=='aadar'){
-      path= this.pathgen.uploadEmployeeAadar()
+    else if (id == 'aadar') {
+      path = this.pathgen.uploadEmployeeAadar()
     }
-    else if(id=='insurance'){
-      path= this.pathgen.uploadEmployeeInsurance()
+    else if (id == 'insurance') {
+      path = this.pathgen.uploadEmployeeInsurance()
     }
-   this.http._post(path, formData).subscribe(
-                (success) => {
-                 console.log(success._body);
-              },
-                (error) => console.log(error)
-            ); 
+    this.http._post(path, formData).subscribe(
+      (success) => {
+        console.log(success._body);
+      },
+      (error) => console.log(error)
+    );
+  }
+  saveAttendence(employee,date) {
+
   }
 }
+
 class paymentReport {
   from: string
   to: string

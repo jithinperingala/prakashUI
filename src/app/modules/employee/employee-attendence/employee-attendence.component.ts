@@ -17,11 +17,15 @@ export class EmployeeAttendenceComponent implements OnInit {
     this.employeeService.getSiteDetails().subscribe(res => {
       console.log("app-emp-reg", res)
       this.workSites = res[0]
+      // this.employeeService.getEmployeeByemployeeType(" ", this.workSites[0]).subscribe(res => {
+      //   this.searchdata = res[0]
+  
+      // })
     })
-    this.employeeService.getEmployeeBysearchKey(" ").subscribe(res => {
-      this.searchdata = res[0]
-
-    })
+    
   }
 
+  saveAttendence(){
+    
+  }
 }
